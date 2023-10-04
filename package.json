@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "math-expression-evaluator": "^2.0.3"
+  }
+}
