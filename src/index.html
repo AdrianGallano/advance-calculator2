@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advance Calculator</title>
-  <link rel="icon" href="./static/images/orange.png">
-  <link rel="stylesheet" href="./static/style.css">
-  <!-- <script src="./scripts/" defer> </script> -->
-</head>
-<body>
-  <main>
-    <div class="calculator">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advance Calculator</title>
+    <link rel="icon" href="./static/images/orange.png" />
+    <link rel="stylesheet" href="./static/style.css" />
+    <!-- <script src="./scripts/" defer> </script> -->
+  </head>
+  <body>
+    <main>
+      <div class="calculator">
         <div class="display">
           <div class="upper-display">
-            <img id="orange-logo" src="./static/images/orange.png" alt="orange">
+            <img
+              id="orange-logo"
+              src="./static/images/orange.png"
+              alt="orange"
+            />
+            <input type="checkbox" id="darkmode-toggle" />
+            <label for="darkmode-toggle">
+              <img src="/src/static/images/sun_svg.svg" alt="sun" class="sun" />
+              <img
+                src="/src/static/images/moon_svg.svg"
+                alt="moon"
+                class="moon"
+              />
+            </label>
           </div>
           <div class="solution">
             <p>0</p>
@@ -28,7 +41,7 @@
             <p>NO PREVIOUS SOLUTIONS TO BE SHOWN.</p>
           </div>
           <div class="complex-operators">
-              <button class="complex-buttons" data-content="SET">set</button> 
+              <button class="complex-buttons" data-content="set">set</button> 
               <button class="complex-buttons" data-content="x!">x!</button>
               <button class="complex-buttons" data-content="√">√</button>
               <button class="complex-buttons" data-content="∛">∛</button>
@@ -57,8 +70,7 @@
               </div>
             </div>
         </div>
-    </div>
-  </main>
-
-</body>
+      </div>
+    </main>
+  </body>
 </html>
