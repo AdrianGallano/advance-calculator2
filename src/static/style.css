@@ -34,7 +34,7 @@ main{
   width: 300px;
   background-color: var(--eerie-black);
   border-radius: 10px;
-  box-shadow: 5px 5px 0 0 #7E55D9,
+  box-shadow: -5px -5px 0 0 #7E55D9,
   10px 10px 0 0 orange;
 }
 
@@ -116,12 +116,40 @@ button:active{
   transition: all 300ms;
 }
 
+.history{
+  display: flex;
+  flex: 1;
+  background-color: var(--night);
+  margin-bottom: 15px;
+  padding: 10px 30px;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.history > p{
+  font-size: .6rem;
+  color: #f2f2f2;
+}
 
 .complex-operators{
   /* Complex operators container */
+  display: grid;
+  grid-template-columns: repeat(5 , 1fr);
+  grid-template-rows: repeat(4 , 1fr);
+  gap: 6px;
   grid-column: 1 / span 2;
   flex: 2;
   margin-bottom: 15px;
+}
+
+.complex-buttons{
+  /* Complex operators container */
+  font-size: .7rem;
+  border-radius: 5px;
+}
+
+.complex-buttons[data-content="SET"]{
+  grid-column: 1 / span 2;
 }
 
 .lower-keypad{
@@ -162,6 +190,10 @@ button:active{
 
 .operator-buttons:last-child{
   background-color: var(--purple-color);
+}
+
+.operator-buttons:last-child:hover{
+  background-color: #3d2570;
 }
 
 
