@@ -193,7 +193,7 @@ button:active{
 }
 
 .operator-buttons:last-child:hover{
-  background-color: #3d2570;
+  background-color: rgb(61, 37, 112);
 }
 
 
@@ -217,4 +217,75 @@ button:active{
     height: 80%;
     width: 60%;
   }
+}
+
+/* dark and light theme style */
+label{
+  margin-top: 5px;
+  height: 15px;
+  width: 30px;
+  position: relative;
+  display: block;
+  background: #e70cdc00;
+  border-radius: 20px;
+  box-shadow: inset 20px 5px 10px rgba(0,0,0,0.4), inset 0px -5px 15px rgba(255,255,255, 0.4);
+  float: left;
+  cursor: pointer;
+  transition: 0.3s;
+} 
+
+label::after{
+  content: "";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 2.4px;
+  left: 1px;
+  background: linear-gradient(180deg, #ffa733,#ff9900);
+  border-radius: 20px;
+  box-shadow: 0px 5px 10px rgba(255, 255, 255, 0);
+  transition: 0.3s;
+}
+
+input{
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}
+
+input:checked + label{
+  background: #242424;
+}
+
+input:checked + label::after{
+  left: 3px;
+  transform: translateX(160%);
+  background: linear-gradient(180deg, #4f4646, #090909);
+}
+
+label img{
+  position: absolute;
+  width: 7.9px;
+  top: 3.5px;
+  z-index: 100;
+}
+
+label img.sun{
+  right: 20.1px;
+  fill: #fff;
+  transition: 0.3s;
+}
+
+label img.moon{
+  left: 20.2px;
+  fill: #7e7e7e;
+  transition: 0.3s;
+}
+
+label:checked + label img.sun{
+  fill: #7e7e7e;
+}
+
+label:checked + label img.moon{
+  fill: #fff;
 }
