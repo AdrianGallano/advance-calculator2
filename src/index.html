@@ -4,17 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advance Calculator</title>
+  <link rel="icon" href="./static/images/orange.png">
   <link rel="stylesheet" href="./static/style.css">
-  <script src="./scripts/" defer> </script>
+  <!-- <script src="./scripts/" defer> </script> -->
 </head>
 <body>
   <main>
     <div class="calculator">
         <div class="display">
-
+          <div class="upper-display">
+            <img id="orange-logo" src="./static/images/orange.png" alt="orange">
+          </div>
+          <div class="solution">
+            <p>123 x 5</p>
+          </div>
+          <div class="result">
+            <span id="equal-to">=</span>
+            <p>0123</p>
+          </div>
         </div>
         <div class="keypad">
-
+            <div class="complex-operators">
+              <script src="./scripts/display-complex.js"></script>
+            </div>
+            <div class="lower-keypad">
+              <div class="numpad">  
+                <script src="./scripts/display-numbers.js"></script>
+              </div>
+              <div class="operators">
+                <script src="./scripts/display-operators.js"></script>
+              </div>
+            </div>
         </div>
     </div>
   </main>
