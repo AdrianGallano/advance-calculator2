@@ -1,13 +1,13 @@
 const operatorsContainer = document.getElementsByClassName("operators")[0];
 
 const OperatorsButtonList = [
-  "C",
-  "AC",
+  "c",
+  "ac",
   "×",
   "÷",
   "+",
   "-",
-  "Ans",
+  "ans",
   "=",
 ];
 
