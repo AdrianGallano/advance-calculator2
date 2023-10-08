@@ -99,10 +99,11 @@ main {
 
 .solution > p {
   overflow-x: auto;
+  text-wrap: nowrap;
 }
 
 .solution > p::-webkit-scrollbar {
-  height: 3px;
+  height: 5px;
 }
 
 .solution > p::-webkit-scrollbar-thumb {
