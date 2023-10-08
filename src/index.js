@@ -58,7 +58,30 @@ const mapComplexOperator = (e) => {
   }
 };
 
-const clearNumber = () => {};
+const clearNumber = () => {
+  if(display.length == 0) return
+  let currentState = display.length - 1;
+  if (
+    display[currentState].match(numberPattern) &&
+    display[currentState].length > 1
+  ) {
+    display[currentState] = display[currentState].slice(0, display[currentState].length - 1);
+    parser[currentState] = parser[currentState].slice(0,parser[currentState].length - 1);
+    index = currentState;
+    numberHolder = display[currentState];
+  } else {
+    display.pop();
+    parser.pop();
+    currentState = display.length - 1;
+    if(display.length != 0 && display[currentState].match(numberPattern)) {
+      index = currentState;
+      numberHolder = display[currentState];
+    } else {
+      index = display.length;
+      numberHolder = "";
+    }
+  }
+};
 
 const clearAllNumber = () => {
   display.splice(0);
@@ -69,12 +92,14 @@ const clearAllNumber = () => {
 };
 
 const useAnswer = () => {
-  equals()
+  equals();
   display.splice(0);
   parser.splice(0);
   let result = resultBox.textContent;
   display.push(result);
   parser.push(result);
+  numberHolder = display[0];
+  index = 0;
 };
 
 const equals = () => {
