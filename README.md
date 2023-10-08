@@ -2,16 +2,23 @@
 
 
 # Advance Calculator
-A Web application built with vanilla Javascript
-Redoing Advance calculator because c# MAUI is too buggy
-
-- If you wish to use the code here's the:
+An application project required by Data-Structures and Algorithms subject
 
 ## Prerequisites
-## Installation Process
+```
+node.js
+webpack
+```
 
+## Installation Process
 ```
 npm install math-expression-evaluator
+npm install --save-dev webpack webpack-cli
+```
+
+## Compile Dependencies
+```
+npm build
 ```
 
 ## Built By:
