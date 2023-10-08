@@ -18,7 +18,7 @@ npm install --save-dev webpack webpack-cli
 
 ## Compile Dependencies
 ```
-npm build
+npm run build
 ```
 
 ## Built By:
