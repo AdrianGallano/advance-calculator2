@@ -68,7 +68,14 @@ const clearAllNumber = () => {
   resultBox.textContent = "";
 };
 
-const useAnswer = () => {};
+const useAnswer = () => {
+  equals()
+  display.splice(0);
+  parser.splice(0);
+  let result = resultBox.textContent;
+  display.push(result);
+  parser.push(result);
+};
 
 const equals = () => {
   if (display.length == 0) return;
