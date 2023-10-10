@@ -90,7 +90,8 @@ main {
 .solution {
   /* Middle display container */
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: flex-end;
   flex: 2;
   font-size: 0.8rem;
@@ -101,6 +102,8 @@ main {
   overflow-x: auto;
   text-wrap: nowrap;
 }
+
+
 
 .solution > p::-webkit-scrollbar {
   height: 5px;
@@ -225,10 +228,6 @@ button:active {
   /* Complex operators container */
   font-size: 0.7rem;
   border-radius: 5px;
-}
-
-.complex-buttons[data-content="set"] {
-  grid-column: 1 / span 2;
 }
 
 .lower-keypad {

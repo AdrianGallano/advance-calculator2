@@ -1,19 +1,27 @@
-import Mexp from "math-expression-evaluator";
+const math = require("../node_modules/mathjs")
 
 // my display
-const solutionBox = document.querySelector(".solution > p");
+const solutionBox = document.querySelector("#solution-box");
 const resultBox = document.querySelector(".result > p");
 // the buttons that is going to be pressed
 const numberButtons = document.querySelectorAll(".numpad-buttons");
 const operatorButtons = document.querySelectorAll(".operator-buttons");
+const complexButtons = document.querySelectorAll(".complex-buttons");
 const display = [];
 const parser = [];
 const complexMapper = [];
 const numberPattern = /[0-9\.]/;
 const operatorPattern = /[+\-*\/]/;
+const complexPattern = /^(a|b|c|d|\!|sin\(|cos\(|tan\(|log\(|ceil\(|floor\(|\(|\))$/;
+let a = 1;
+let b = 2;
+let c = 3;
+let d = 4;
+
+
 let numberHolder = "";
 let index = display.length;
-const mexp = new Mexp();
+
 
 numberButtons.forEach((btn) => {
   btn.addEventListener("click", (e) => {
@@ -33,13 +41,26 @@ operatorButtons.forEach((btn) => {
       numberHolder = "";
       index = display.length;
     } else {
-      mapComplexOperator(e);
+      mapBasicOperator(e);
     }
     showDisplay();
   });
 });
 
-const mapComplexOperator = (e) => {
+complexButtons.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    if (e.target.dataset.content.match(complexPattern)) {
+      getComplexOperator(e)
+      numberHolder = "";
+      index = display.length;
+    } else {
+      console.log("not yet.")
+    }
+    showDisplay();
+  });
+});
+
+const mapBasicOperator = (e) => {
   let btnData = e.target.dataset.content;
 
   switch (btnData) {
@@ -105,9 +126,9 @@ const useAnswer = () => {
 const equals = () => {
   if (display.length == 0) return;
   try {
-    let finalAnswer = mexp.eval(parser.join(""));
+    let finalAnswer = math.evaluate(parser.join(""))
     resultBox.textContent = finalAnswer;
-  } catch {
+  } catch(err) {
     resultBox.textContent = "Syntax error";
   }
 };
@@ -115,6 +136,12 @@ const equals = () => {
 const getBasicOperator = (e) => {
   let btnData = e.target.dataset.content;
   display.push(e.target.textContent);
+  parser.push(btnData);
+};
+
+const getComplexOperator = (e) => {
+  let btnData = e.target.dataset.content;
+  display.push(btnData);
   parser.push(btnData);
 };
 
