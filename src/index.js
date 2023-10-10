@@ -108,28 +108,20 @@ const mapComplexOperator = (e) => {
     case "sqrt(": // Square Root
       squareRoot();
       break;
-    case "nth-sqrt(": // Nth Root
-      nthRoot();
+    case "cube(": // Nth Root
+      cubeRoot();
       break;
     default:
       break;
   }
 };
 
-const nthRoot = () => {
-  if (numberHolder !== "") {
-    const n = parseFloat(numberHolder);
-    if (n !== 0) {
-      const result = Math.pow(variables['x'], 1 / n);
-      display[index] = result.toString();
-      parser[index] = result.toString();
-      numberHolder = result.toString();
-    } else {
-      display[index] = "Error: Division by zero";
-      parser[index] = "Error: Division by zero";
-      numberHolder = "";
-    }
-  }
+const cubeRoot = () => {
+  display.push("∛(")
+  parser.push("cbrt(")
+  numberHolder = "";
+  index = display.length;
+  
 };
 
 const squareRoot = () => {
