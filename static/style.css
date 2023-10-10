@@ -40,8 +40,10 @@ main {
   height: 100vh;
 }
 
+
 .calculator {
   /* Calculator container */
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 95%;
@@ -53,6 +55,80 @@ main {
 
 .light-calc{
   background-color: var(--white-smoke);
+}
+
+.navigation{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  height: 100%;
+  width: 90%;
+  background-color: var(--eerie-black);
+  -moz-box-shadow: 2px 3px 4px 2px var(--night);
+  -webkit-box-shadow: 2px 3px 4px 2px var(--night);
+  box-shadow: 2px 3px 4px 2px var(--night);
+  border-radius: 15px;
+}
+
+.navigation > p{
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.navigation > ul{
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation li{
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.navigation button{
+  position: absolute;
+  padding: 1rem;
+  top: 10px;
+  right: 10px;
+}
+
+.navigation input{
+  border-radius: 10px;
+  border-color: transparent;
+  -moz-box-shadow: 2px 3px 4px 2px var(--night);
+  -webkit-box-shadow: 2px 3px 4px 2px var(--night);
+  box-shadow: 2px 3px 4px 2px var(--night);
+  background-color: var(--eerie-black);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white-color);
+  padding: 1rem 2rem;
+}
+
+.nav-container{
+  display: none;
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 0;
+}
+
+input[name="variable"]{
+  padding: .5rem 1rem;
+  width: 80%;
+}
+
+input[value="Save"]:hover{
+  background-color: var(--night);
+}
+
+input[value="Save"]:active{
+  background-color: orange;
 }
 
 .display {
@@ -298,7 +374,7 @@ button:active {
 }
 
 /* dark and light theme style */
-label {
+label[for="darkmode-toggle"] {
   margin-top: 5px;
   height: 15px;
   width: 30px;
@@ -310,7 +386,7 @@ label {
   cursor: pointer;
 }
 
-label::after {
+label[for="darkmode-toggle"]::after {
   content: "";
   width: 10px;
   height: 10px;
@@ -322,17 +398,17 @@ label::after {
   box-shadow: 0px 5px 10px rgba(255, 255, 255, 0);
 }
 
-input {
+#darkmode-toggle {
   visibility: hidden;
   width: 0px;
   height: 0px;
 }
 
-input:checked + label {
+#darkmode-toggle:checked + label[for="darkmode-toggle"] {
   background: var(--purple-color);
 }
 
-input:checked + label::after {
+#darkmode-toggle:checked + label[for="darkmode-toggle"]::after {
   left: 3px;
   transform: translateX(160%);
 }

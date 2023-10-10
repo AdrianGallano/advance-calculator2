@@ -1,27 +1,41 @@
-const math = require("../node_modules/mathjs")
+const math = require("../node_modules/mathjs");
 
 // my display
 const solutionBox = document.querySelector("#solution-box");
 const resultBox = document.querySelector(".result > p");
+const variableBox = document.querySelectorAll("span[data-content]");
+
+//inputs
+const inputVariables = document.querySelectorAll("input[name='variable']");
+
 // the buttons that is going to be pressed
 const numberButtons = document.querySelectorAll(".numpad-buttons");
 const operatorButtons = document.querySelectorAll(".operator-buttons");
 const complexButtons = document.querySelectorAll(".complex-buttons");
+const saveButton = document.querySelector("input[value='Save']");
 const display = [];
 const parser = [];
 const complexMapper = [];
 const numberPattern = /[0-9\.]/;
 const operatorPattern = /[+\-*\/]/;
-const complexPattern = /^(a|b|c|d|\!|sin\(|cos\(|tan\(|log\(|ceil\(|floor\(|\(|\))$/;
-let a = 1;
-let b = 2;
-let c = 3;
-let d = 4;
+const complexPattern =
+  /^(a|b|c|d|\!|sin\(|cos\(|tan\(|log\(|ceiling\(|floor\(|\(|\)|%)$/;
 
+//navigation
+const navContainer = document.querySelector(".nav-container");
+const navigation = document.querySelector(".navigation");
+const setButton = document.querySelector("button[data-content='set']");
+const closeButton = document.getElementById("close-btn");
+
+const scope = {
+  a: "0",
+  b: "0",
+  c: "0",
+  d: "0",
+};
 
 let numberHolder = "";
 let index = display.length;
-
 
 numberButtons.forEach((btn) => {
   btn.addEventListener("click", (e) => {
@@ -50,15 +64,25 @@ operatorButtons.forEach((btn) => {
 complexButtons.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     if (e.target.dataset.content.match(complexPattern)) {
-      getComplexOperator(e)
+      getComplexOperator(e);
       numberHolder = "";
       index = display.length;
     } else {
-      console.log("not yet.")
+      mapComplexOperator(e);
     }
     showDisplay();
   });
 });
+
+saveButton.addEventListener("click", () => {
+  setNumber()
+  closeNav()
+});
+
+closeButton.addEventListener("click", () => {
+  closeNav()
+});
+
 
 const mapBasicOperator = (e) => {
   let btnData = e.target.dataset.content;
@@ -79,22 +103,63 @@ const mapBasicOperator = (e) => {
   }
 };
 
+const mapComplexOperator = (e) => {
+  let btnData = e.target.dataset.content;
+
+  switch (btnData) {
+    case "set":
+      openNav();
+    default:
+      break;
+  }
+};
+
+const openNav = () => {
+  navContainer.style.display = "flex";
+  setTimeout(() => {
+    navContainer.style.width = "100%";
+  }, 0);
+};
+
+const closeNav = () => {
+  navContainer.style.width = "0";
+  setTimeout(() => {
+    navContainer.style.display = "none";
+  }, 100);
+};
+
+const setNumber = () => {
+  let nodeNumber = 0;
+  /* assign vaiableBox to scope */
+  for (let variable in scope) {
+    scope[variable] = inputVariables[nodeNumber].value;
+    variableBox[nodeNumber].textContent = inputVariables[nodeNumber].value;
+    nodeNumber++;
+  }
+};
+
 const clearNumber = () => {
-  if(display.length == 0) return
+  if (display.length == 0) return;
   let currentState = display.length - 1;
   if (
     display[currentState].match(numberPattern) &&
     display[currentState].length > 1
   ) {
-    display[currentState] = display[currentState].slice(0, display[currentState].length - 1);
-    parser[currentState] = parser[currentState].slice(0,parser[currentState].length - 1);
+    display[currentState] = display[currentState].slice(
+      0,
+      display[currentState].length - 1
+    );
+    parser[currentState] = parser[currentState].slice(
+      0,
+      parser[currentState].length - 1
+    );
     index = currentState;
     numberHolder = display[currentState];
   } else {
     display.pop();
     parser.pop();
     currentState = display.length - 1;
-    if(display.length != 0 && display[currentState].match(numberPattern)) {
+    if (display.length != 0 && display[currentState].match(numberPattern)) {
       index = currentState;
       numberHolder = display[currentState];
     } else {
@@ -126,9 +191,9 @@ const useAnswer = () => {
 const equals = () => {
   if (display.length == 0) return;
   try {
-    let finalAnswer = math.evaluate(parser.join(""))
+    let finalAnswer = math.evaluate(parser.join(""), scope);
     resultBox.textContent = finalAnswer;
-  } catch(err) {
+  } catch (err) {
     resultBox.textContent = "Syntax error";
   }
 };
@@ -171,3 +236,11 @@ const changeSign = () => {
   display[index] = numberHolder;
   parser[index] = numberHolder;
 };
+
+/* 
+sqrt
+nth sqrt
+log2x
+x to the power of n
+x squared 
+*/

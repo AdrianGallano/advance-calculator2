@@ -6,13 +6,42 @@
     <title>Advance Calculator</title>
     <link rel="icon" href="./static/images/orange.png" />
     <link rel="stylesheet" href="./static/style.css" />
-    <script src="./src/scripts/change-color-theme.js" defer ></script>
-    <script src="./src/scripts/keyboard.js" defer ></script>
-    <script src="./dist/main.js" defer ></script>
+    <script src="./src/scripts/change-color-theme.js" defer></script>
+    <script src="./src/scripts/keyboard.js" defer></script>
+    <script src="./dist/main.js" defer></script>
   </head>
   <body>
     <main>
       <div class="calculator">
+        <!-- Set overlay -->
+        <div class="nav-container">
+          <nav class="navigation">
+            <button id="close-btn">x</button>
+            <p>Edit Variables</p>
+            <ul>
+              <li>
+                <label for="a">a:</label>
+                <input type="text" id="a" value="0" name="variable" />
+              </li>
+              <li>
+                <label for="b">b:</label>
+                <input type="text" id="b" value="0" name="variable" />
+              </li>
+              <li>
+                <label for="c">c:</label>
+                <input type="text" id="c" value="0" name="variable" />
+              </li>
+              <li>
+                <label for="d">d:</label>
+                <input type="text" id="d" value="0" name="variable" />
+              </li>
+              <li>
+                <input type="button" value="Save">
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <!-- The whole calc -->
         <div class="display">
           <div class="upper-display">
             <img
@@ -21,15 +50,14 @@
               alt="orange"
             />
             <input type="checkbox" id="darkmode-toggle" checked />
-            <label for="darkmode-toggle">
-            </label>
+            <label for="darkmode-toggle"> </label>
           </div>
           <div class="solution">
             <p id="variables">
-              a = <span data-content="a">0</span>
-              b = <span data-content="b">0</span>
-              c = <span data-content="c">0</span>
-              d = <span data-content="d">0</span>
+              a = <span data-content="a">0</span> b =
+              <span data-content="b">0</span> c =
+              <span data-content="c">0</span> d =
+              <span data-content="d">0</span>
             </p>
             <p id="solution-box"></p>
           </div>
@@ -41,45 +69,56 @@
         <div class="keypad">
           <div class="history">
             <p>NO PREVIOUS SOLUTIONS TO BE SHOWN.</p>
-
           </div>
           <div class="complex-operators">
-              <button class="complex-buttons" data-content="set">set</button> 
-              <button class="complex-buttons" data-content="a">a</button>
-              <button class="complex-buttons" data-content="b">b</button>
-              <button class="complex-buttons" data-content="c">c</button>
-              <button class="complex-buttons" data-content="d">d</button>
-              <button class="complex-buttons" data-content="!">x!</button>
-              <button class="complex-buttons" data-content="sqrt(">√</button>
-              <button class="complex-buttons" data-content="nth-sqrt("><sup>n</sup>√</button>
-              <button class="complex-buttons" data-content="%">%</button>
-              <button class="complex-buttons" data-content="sin(">sin</button> 
-              <button class="complex-buttons" data-content="cos(">cos</button> 
-              <button class="complex-buttons" data-content="tan(">tan</button> 
-              <button class="complex-buttons" data-content="log2(">log<sub>2</sub> x</button> 
-              <button class="complex-buttons" data-content="log(">logx</button>
-              <button class="complex-buttons" data-content="power">x<sup>n</sup></button> 
-              <button class="complex-buttons" data-content="square">x<sup>2</sup></button> 
-              <button class="complex-buttons" data-content="ceil(">ceil</button>
-              <button class="complex-buttons" data-content="floor(">floor</button>
-              <button class="complex-buttons" data-content="(">(</button>
-              <button class="complex-buttons" data-content=")">)</button>
+            <button class="complex-buttons" data-content="set">set</button>
+            <button class="complex-buttons" data-content="a">a</button>
+            <button class="complex-buttons" data-content="b">b</button>
+            <button class="complex-buttons" data-content="c">c</button>
+            <button class="complex-buttons" data-content="d">d</button>
+            <button class="complex-buttons" data-content="!">x!</button>
+            <button class="complex-buttons" data-content="sqrt(">√</button>
+            <button class="complex-buttons" data-content="nth-sqrt(">
+              <sup>n</sup>√
+            </button>
+            <button class="complex-buttons" data-content="%">%</button>
+            <button class="complex-buttons" data-content="sin(">sin</button>
+            <button class="complex-buttons" data-content="cos(">cos</button>
+            <button class="complex-buttons" data-content="tan(">tan</button>
+            <button class="complex-buttons" data-content="log2(">
+              log<sub>2</sub> x
+            </button>
+            <button class="complex-buttons" data-content="log(">logx</button>
+            <button class="complex-buttons" data-content="power">
+              x<sup>n</sup>
+            </button>
+            <button class="complex-buttons" data-content="square">
+              x<sup>2</sup>
+            </button>
+            <button class="complex-buttons" data-content="ceil(">ceil</button>
+            <button class="complex-buttons" data-content="floor(">floor</button>
+            <button class="complex-buttons" data-content="(">(</button>
+            <button class="complex-buttons" data-content=")">)</button>
+          </div>
+          <div class="lower-keypad">
+            <div class="numpad">
+              <script src="./src/scripts/display-numbers.js"></script>
             </div>
-            <div class="lower-keypad">
-              <div class="numpad">  
-                <script src="./src/scripts/display-numbers.js"></script>
-              </div>
-              <div class="operators">
-                <button class="operator-buttons" data-content="clear">c</button>
-                <button class="operator-buttons" data-content="allclear">ac</button>
-                <button class="operator-buttons" data-content="*">×</button>
-                <button class="operator-buttons" data-content="/">÷</button>
-                <button class="operator-buttons" data-content="+">+</button>
-                <button class="operator-buttons" data-content="-">-</button>
-                <button class="operator-buttons" data-content="answer">ans</button>
-                <button class="operator-buttons" data-content="equals">=</button>
-              </div>
+            <div class="operators">
+              <button class="operator-buttons" data-content="clear">c</button>
+              <button class="operator-buttons" data-content="allclear">
+                ac
+              </button>
+              <button class="operator-buttons" data-content="*">×</button>
+              <button class="operator-buttons" data-content="/">÷</button>
+              <button class="operator-buttons" data-content="+">+</button>
+              <button class="operator-buttons" data-content="-">-</button>
+              <button class="operator-buttons" data-content="answer">
+                ans
+              </button>
+              <button class="operator-buttons" data-content="equals">=</button>
             </div>
+          </div>
         </div>
       </div>
     </main>
