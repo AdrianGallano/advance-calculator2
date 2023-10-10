@@ -15,16 +15,12 @@ const complexButtons = document.querySelectorAll(".complex-buttons");
 const saveButton = document.querySelector("input[value='Save']");
 const display = [];
 const parser = [];
-const complexMapper = [];
 const numberPattern = /[0-9\.]/;
 const operatorPattern = /[+\-*\/]/;
-const complexPattern =
-  /^(a|b|c|d|\!|sin\(|cos\(|tan\(|log\(|ceiling\(|floor\(|\(|\)|%)$/;
+const complexPattern = /^(a|b|c|d|!|sin\(|cos\(|tan\(|log\(|log2\(|ceil\(|floor\(|\(|\)|%|\^|\^\s2)$/;
 
 //navigation
 const navContainer = document.querySelector(".nav-container");
-const navigation = document.querySelector(".navigation");
-const setButton = document.querySelector("button[data-content='set']");
 const closeButton = document.getElementById("close-btn");
 
 const scope = {
@@ -75,14 +71,13 @@ complexButtons.forEach((btn) => {
 });
 
 saveButton.addEventListener("click", () => {
-  setNumber()
-  closeNav()
+  setNumber();
+  closeNav();
 });
 
 closeButton.addEventListener("click", () => {
-  closeNav()
+  closeNav();
 });
-
 
 const mapBasicOperator = (e) => {
   let btnData = e.target.dataset.content;
@@ -109,10 +104,41 @@ const mapComplexOperator = (e) => {
   switch (btnData) {
     case "set":
       openNav();
+      break;
+    case "sqrt(": // Square Root
+      squareRoot();
+      break;
+    case "nth-sqrt(": // Nth Root
+      nthRoot();
+      break;
     default:
       break;
   }
 };
+
+const nthRoot = () => {
+  if (numberHolder !== "") {
+    const n = parseFloat(numberHolder);
+    if (n !== 0) {
+      const result = Math.pow(variables['x'], 1 / n);
+      display[index] = result.toString();
+      parser[index] = result.toString();
+      numberHolder = result.toString();
+    } else {
+      display[index] = "Error: Division by zero";
+      parser[index] = "Error: Division by zero";
+      numberHolder = "";
+    }
+  }
+};
+
+const squareRoot = () => {
+  display.push("√(")
+  parser.push("sqrt(")
+  numberHolder = "";
+  index = display.length;
+};
+
 
 const openNav = () => {
   navContainer.style.display = "flex";
@@ -129,6 +155,16 @@ const closeNav = () => {
 };
 
 const setNumber = () => {
+  for(let inputVar of inputVariables){
+    if(!inputVar.value.match(numberPattern)){
+      alert("Variables must be valid numbers")
+      for (let i = 0; i < inputVariables.length; i++) {
+        inputVariables[i].value = variableBox[i].textContent;
+      }
+      return;
+    }
+  }
+  
   let nodeNumber = 0;
   /* assign vaiableBox to scope */
   for (let variable in scope) {
@@ -240,7 +276,13 @@ const changeSign = () => {
 /* 
 sqrt
 nth sqrt
-log2x
-x to the power of n
-x squared 
 */
+
+/* 
+log 2 x
+x squared 
+x to the power of n
+
+*/
+
+// dont accept unless number in set
