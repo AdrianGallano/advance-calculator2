@@ -12,7 +12,7 @@ webpack
 
 ## Installation Process
 ```
-npm install math-expression-evaluator
+npm install mathjs
 npm install --save-dev webpack webpack-cli
 ```
 
